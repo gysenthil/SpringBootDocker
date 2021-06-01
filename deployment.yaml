@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sbdocker-deployment
+  labels:
+    app: sbdocker
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sbdocker
+  template:
+    metadata:
+      labels:
+        app: sbdocker
+    spec:
+      containers:
+      - name: sbdocker
+        image: gysenthil/springbootdocker:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: sbdocprivaterepo
+
+     
